@@ -1,0 +1,17 @@
+rule_id,from_room_type,to_room_type,transformation_type,bhk_applicability,priority,notes
+1,verandah,balcony,rename,ALL,1,Ground verandah becomes first-floor balcony — same footprint and net_w width
+2,kitchen,dry_kitchen,rename,ALL,2,First-floor kitchen is dry kitchen; plumbing stack runs below from ground kitchen
+3,staircase,staircase_head,rename,ALL,3,Structural stair void opening must align exactly with ground staircase footprint (tolerance 0.01m)
+4,utility,utility,carry_over,ALL,4,Utility zone carries over unchanged — plumbing stacks align with ground floor
+5,toilet_attached,toilet_attached,carry_over,ALL,5,Wet room stacks vertically for plumbing alignment — same footprint
+6,toilet_common,toilet_common,carry_over,ALL,6,Wet room stacks vertically for plumbing alignment — same footprint
+7,master_bedroom,master_bedroom,carry_over,ALL,7,Master bedroom present on both floors with identical footprint
+8,bedroom_2,bedroom_2,carry_over,ALL,8,Bedroom_2 carries over to first floor — same width and depth
+9,bedroom_3,bedroom_3,carry_over,ALL,9,Bedroom_3 carries over to first floor — same width and depth
+10,bedroom_4,bedroom_4,carry_over,ALL,10,Bedroom_4 carries over to first floor — same width and depth
+11,pooja,pooja,carry_over,ALL,11,Sacred space unchanged across floors — same footprint and zone position
+12,store,store,carry_over,ALL,12,Storage room carries over unchanged — no plumbing requirement
+13,living,NULL,to_bedroom,ALL,13,Ground floor public living zone becomes additional bedroom on first floor (no living room on first floor)
+14,dining,NULL,to_bedroom,ALL,14,Ground floor public dining zone becomes additional bedroom on first floor
+15,corridor,corridor,carry_over,ALL,15,Internal corridor carries over for bedroom access circulation on first floor
+16,toilet_attached,NULL,omit_if_no_bedroom,ALL,16,Attached toilet only added to first floor if an additional master suite is present

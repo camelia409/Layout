@@ -1,0 +1,53 @@
+rule_id,rule_type,rule_key,rule_value,bhk_applicability,priority,description
+1,zoning,verandah,front,ALL,1,Verandah must be in front zone (highest y-band — north for N-facing plots)
+2,zoning,living,public,ALL,2,Living room must be in public zone (band 2 — between verandah and service)
+3,zoning,dining,public,ALL,3,Dining room must be in public zone (band 2)
+4,zoning,pooja,public,ALL,4,Pooja room must be in public or semi-private zone near NE (band 2 or transition)
+5,zoning,kitchen,service,ALL,5,Kitchen must be in service zone (band 3 — central band)
+6,zoning,toilet_common,service,ALL,6,Common toilet must be in service zone (band 3)
+7,zoning,utility,service,ALL,7,Utility must be in service zone (band 3)
+8,zoning,staircase,service,2BHK;3BHK;4BHK,8,Staircase must be in service zone (band 3 — near corridor transition)
+9,zoning,store,service,3BHK;4BHK,9,Store room must be in service zone (band 3) adjacent to kitchen
+10,zoning,master_bedroom,private,ALL,10,Master bedroom must be in private zone (band 4 — lowest/southernmost pre-rotation)
+11,zoning,bedroom_2,private,2BHK;3BHK;4BHK,11,Bedroom 2 must be in private zone (band 4)
+12,zoning,bedroom_3,private,3BHK;4BHK,12,Bedroom 3 must be in private zone (band 4)
+13,zoning,bedroom_4,private,4BHK,13,Bedroom 4 must be in private zone (band 4)
+14,zoning,toilet_attached,private,ALL,14,Attached toilet is always in private zone sharing wall with master bedroom
+15,corridor,type,linear,2BHK;3BHK;4BHK,20,Corridor must be full-width linear passage between service and private zones
+16,corridor,position,between_service_private,2BHK;3BHK;4BHK,21,Corridor separates service zone (band 3) from private zone (band 4)
+17,placement,master_bedroom,SW,ALL,30,Master bedroom preferred in SW quadrant (Vastu Nairuthi — stable energy)
+18,placement,kitchen,SE,ALL,31,Kitchen preferred in SE quadrant (Vastu Agni — fire zone)
+19,placement,pooja,NE,2BHK;3BHK;4BHK,32,Pooja preferred in NE quadrant (Vastu Ishanya — auspicious spiritual zone)
+20,placement,staircase,SW,2BHK;3BHK;4BHK,33,Staircase preferred in S or SW per vastu for structural stability
+21,placement,toilet_attached,SW,ALL,34,Attached toilet acceptable in SW or S away from NE per vastu
+22,placement,toilet_common,NW,ALL,35,Common toilet acceptable in NW zone — avoids NE sacred corner per vastu
+23,placement,store,SW,3BHK;4BHK,36,Store room in SW or W acceptable per vastu — heavy storage at stable corners
+24,placement,utility,NW,2BHK;3BHK;4BHK,37,Utility room in NW acceptable — service activities on N or W side per vastu
+25,dimension_scale,compact,0.92,ALL,100,Room dimension scale for compact strategy mode (EWS and small plots)
+26,dimension_scale,standard,1.00,ALL,101,Room dimension scale for standard strategy mode (baseline for all plots)
+27,dimension_scale,luxury,1.08,ALL,102,Room dimension scale for luxury strategy mode (large premium plots)
+28,corridor_depth,compact,0.90,ALL,103,Corridor depth target for compact mode on standard plots (min NBC 0.9m)
+29,corridor_depth,standard,1.20,ALL,104,Corridor depth target for standard mode on standard plots
+30,corridor_depth,luxury,1.50,ALL,105,Corridor depth target for luxury mode on standard plots
+31,corridor_depth_ews,compact,0.75,ALL,106,Corridor depth target for compact mode on EWS plots (below 50 sqm net)
+32,corridor_depth_ews,standard,0.90,ALL,107,Corridor depth target for standard mode on EWS plots
+33,corridor_depth_ews,luxury,1.20,ALL,108,Corridor depth target for luxury mode on EWS plots
+34,band_fraction,verandah_h,1.50,ALL,110,Verandah band fixed height 1.5m (full net_w width; does not scale with mode)
+35,band_fraction,public_min_h,2.50,ALL,111,Public zone (band 2) minimum height: living + dining must have at least 2.5m depth
+36,band_fraction,service_min_h,2.00,ALL,112,Service zone (band 3) minimum height: kitchen must have at least 2.0m depth
+37,band_fraction,private_min_h,2.80,ALL,113,Private zone (band 4) minimum height: master bedroom needs at least 2.8m depth
+38,ews_threshold,net_area,50.0,ALL,120,Net area below 50 sqm triggers EWS mode: removes dining pooja store bedroom_2+ from set
+39,small_threshold,net_area,90.0,ALL,121,Net area below 90 sqm triggers small mode: removes dining pooja store from set
+40,rotation,N,0,ALL,130,North-facing plots: no rotation applied (pre-rotation coords are final coords)
+41,rotation,S,180,ALL,131,South-facing plots: 180-degree rotation (N→S mirror applied to all coords)
+42,rotation,E,90,ALL,132,East-facing plots: 90-degree CCW rotation (road-facing side becomes E)
+43,rotation,W,270,ALL,133,West-facing plots: 90-degree CW rotation (road-facing side becomes W)
+44,vastu_zone,NE,auspicious,ALL,140,NE (Ishanya) is the most auspicious zone — pooja and entry here; no toilet
+45,vastu_zone,SW,stable,ALL,141,SW (Nairuthi) is the most stable zone — master bedroom and heavy structures here
+46,vastu_zone,SE,fire,ALL,142,SE (Agni) is the fire zone — kitchen here for ideal vastu compliance
+47,vastu_zone,NW,air,ALL,143,NW (Vayu) is the air zone — utility and common toilet acceptable here
+48,score_weight,valid,0.40,ALL,150,XGBoost constraint validity score weight in overall composite score
+49,score_weight,vastu,0.25,ALL,151,Vastu zone compliance score weight in overall composite score
+50,score_weight,nbc,0.20,ALL,152,NBC area/width pass rate weight in overall composite score
+51,score_weight,adj,0.10,ALL,153,Adjacency rule compliance score weight in overall composite score
+52,score_weight,circ,0.05,ALL,154,Circulation connectivity score weight in overall composite score

@@ -1,0 +1,10 @@
+rule_id,room_type,must_stack,tolerance_m,reason
+1,staircase,1,0.01,Structural: stair void must align exactly — offset causes structural failure and plan rejection
+2,staircase_head,1,0.01,Structural: first-floor stair opening must match ground staircase position precisely
+3,toilet_attached,1,0.10,Plumbing stack: attached toilet drain must run vertically above ground toilet within 100mm tolerance
+4,toilet_common,1,0.10,Plumbing stack: common toilet drain must run vertically above ground toilet within 100mm tolerance
+5,kitchen,1,0.10,Plumbing stack: kitchen drain and water supply must align with floor below for single stack system
+6,dry_kitchen,1,0.10,Plumbing stack: first-floor dry kitchen above ground kitchen keeps waste pipe run short and vertical
+7,utility,1,0.10,Plumbing stack: utility room drain alignment avoids cross-slab pipe runs and waterproofing failures
+8,master_bedroom,0,0.25,Structural preference: master bedroom above master bedroom preferred for slab loading symmetry but not mandatory
+9,corridor,0,0.30,Structural preference: corridor above corridor preferred to distribute slab loads but positional shift permitted
