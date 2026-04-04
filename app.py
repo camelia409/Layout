@@ -405,7 +405,7 @@ with st.sidebar:
     st.markdown('<div class="phase-status">✓ Models loaded<br>✓ Database indexed<br>✓ Ready to generate</div>', unsafe_allow_html=True)
     
     st.markdown("---")
-    generate_btn = st.button("🔬 Generate Floorplan", use_container_width=True)
+    generate_btn = st.button("🔬 Generate Floorplan")
 
 # Main content area with tabs
 tab1, tab2 = st.tabs(["📐 Generated Plan", "📋 Technical Report"])
