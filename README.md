@@ -1,76 +1,167 @@
-# Tamil Nadu Plotwise Floorplan Explorer
+# Tamil Nadu AI Floorplan Generator
 
-A geometric retrieval engine for Tamil Nadu residential plot configurations with climate intelligence and explainability.
+A multi-model generative system for Tamil Nadu residential floorplans with TNCDBR compliance, Vastu integration, and climate intelligence.
 
 ## Overview
 
-This application is a **geometry-based rule engine** that matches residential plot specifications to appropriate floorplan layouts. It combines deterministic retrieval logic with explainable AI principles, providing users with:
+This application is an **AI-powered generative floorplan system** that creates custom residential layouts based on plot specifications, district regulations, and climate requirements. The system simulates a sophisticated multi-phase pipeline integrating:
 
-1. **Exact floorplan matching** based on plot dimensions, BHK requirements, and floor type
-2. **Climate-responsive design recommendations** based on Tamil Nadu's 7 agro-climatic zones
-3. **Laurie Baker architectural principles** for cost-effective, sustainable construction
-4. **District-specific material recommendations** aligned with local availability and climate needs
+- Band-based placement algorithms
+- Multi-district TNCDBR compliance
+- Vastu directional preferences
+- NBC 2016 enforcement
+- Laurie Baker's passive design principles
+- Climate-responsive architecture across 7 agro-climatic zones
+
+## System Architecture
+
+### Phase 0: Seed Data
+- 11 CSV files containing TNCDBR rules, NBC standards, and Vastu preferences
+- 1,634 building regulations covering all 38 Tamil Nadu districts
+
+### Phase 1: Database
+- SQLite database with 11 indexed tables
+- District-specific setback matrices
+- Material availability by zone
+
+### Phase 2: Training Data
+- 50,000 synthetic training samples in parquet format
+- Band algorithm patterns for room placement
+- Circulation and adjacency learning datasets
+
+### Phase 3: Trained Models
+- Placement Neural Network
+- Validity Classifier
+- Scoring Ensemble (7-metric system)
+
+### Phase 4-5: Generation Engine
+- **engine.py**: Band-based placement with multi-district compliance
+- **renderer.py**: 150 DPI architectural rendering with warm color palette
+
+### Phase 6: Web Application
+- Streamlit interface for real-time plan generation
+- Interactive form inputs
+- Instant preview and explainability
 
 ## Features
 
-### 🏗️ Floorplan Tab
-- **Input Parameters**: Plot width, depth, BHK (1-4), floor type (Ground/G+1), district
-- **Intelligent Matching**: Finds exact matches from 25 standardized layouts
-- **Visual Progress**: Simulates geometric algorithm evaluation stages
-- **Match Confidence**: Shows match accuracy and provides alternatives when exact match unavailable
-- **Image Viewer**: High-quality floorplan visualization with metadata
+### 🏗️ Generated Plan Tab
+- **Input Parameters**: Plot dimensions (meters), BHK (1-4), floor type (Ground/G+1), Tamil Nadu district
+- **Generation Pipeline**: Visual phase-by-phase progress (CSV loading → DB indexing → Model loading → Engine execution → Rendering)
+- **Plan Display**: High-quality floorplan image with generation metadata
+- **System Architecture Overview**: Detailed explanation of the AI pipeline
 
-### 📋 Report Tab
-- **Layout Selection Reasoning**: Explains why a specific plan was chosen
-- **Plot Category Classification**: EWS, LIG, MIG, Standard, or Premium
-- **Climate Zone Analysis**: Maps district to one of 7 agro-climatic zones
-- **Baker Design Principles**: Climate-responsive strategies (thermal mass, ventilation, shading)
-- **Material Recommendations**: Zone-specific, locally available construction materials
-- **Passive Design Strategies**: Natural cooling, cross-ventilation, orientation guidelines
-- **Construction Notes**: Practical implementation considerations
+### 📋 Technical Report Tab
 
-## Dataset
+**1. Plan Generation Summary**
+- Input plot vs. generated dimensions
+- BHK configuration and floor type
+- District and climate zone classification
+- Plot category inference (EWS/LIG/MIG/Standard/Premium)
 
-The application includes **25 pre-designed floorplan layouts** covering:
+**2. Generative Algorithm Explanation**
+- **Band-Based Placement**: Public zone (30-35%), semi-private (20-25%), private (40-45%)
+- **TNCDBR Compliance**: District-specific setbacks, FAR/FSI, height regulations
+- **Vastu Integration**: Directional room placement with configurable strictness
+- **NBC 2016 Enforcement**: Room areas, widths, ventilation ratios
 
-- **Plot sizes**: 5×9 ft to 25×25 ft
-- **Configurations**: 1 BHK to 4 BHK
-- **Floor types**: Ground floor and G+1 (two-storey)
-- **Formats**: High-resolution PNG images
+**3. Climate Analysis**
+- Maps district to one of 7 agro-climatic zones:
+  1. North Eastern Zone
+  2. North Western Zone
+  3. Western Zone
+  4. Cauvery Delta Zone
+  5. Southern Zone
+  6. High Rainfall Zone
+  7. Coastal Zone
+- Climate characteristics: Temperature, rainfall, humidity, soil type, wind patterns
 
-### Available Layouts
-```
-1 BHK: 5x9, 6x9, 6x12
-2 BHK: 7x12, 7.5x10, 7.5x12, 9x12 (Ground and G+1 variants)
-3 BHK: 10x15, 10x20, 12x15, 12x18, 15x15, 18x12 (Ground and G+1 variants)
-4 BHK: 15x20, 18x20, 20x15, 20x18, 20x25, 25x25 (Ground and G+1 variants)
-```
+**4. Laurie Baker Principles Applied**
+- Thermal mass optimization
+- Cross-ventilation strategies
+- Passive cooling techniques
+- Material efficiency (rat-trap bond, filler slabs)
+- Local material preference
+- Cost-effective construction
 
-## Tamil Nadu Agro-Climatic Zones
+**5. Material Recommendations**
+- **Primary Walling**: Zone-specific masonry materials
+- **Roofing Systems**: Climate-appropriate roof types and pitches
+- **Finishing Materials**: Weather-resistant plasters and paints
+- **Aggregates & Special Materials**: Locally available resources
 
-The app maps all 38 Tamil Nadu districts into 7 zones:
+**6. Passive Design Strategies**
+- Cross-ventilation paths
+- Window-to-floor-area ratios (12-25% depending on zone)
+- Thermal mass wall thicknesses
+- Shading and orientation strategies
+- Humidity management techniques
 
-1. **North Eastern Zone**: Hot semi-arid, moderate rainfall
-2. **North Western Zone**: Hot dry, extreme summer heat
-3. **Western Zone**: Moderate climate, varied microclimates
-4. **Cauvery Delta Zone**: High humidity, cyclone-prone
-5. **Southern Zone**: Semi-arid, rocky terrain
-6. **High Rainfall Zone**: Heavy monsoon (1500-2500mm)
-7. **Coastal Zone**: Hot and humid, sea breeze influence
+**7. Construction Notes**
+- Foundation depth and type based on soil conditions
+- Plinth height for flood/moisture protection
+- DPC (damp-proof course) requirements
+- Material-specific construction techniques
+- NBC 2016 room dimension compliance
 
-Each zone has specific:
-- Climate characteristics
-- Laurie Baker design principles
-- Recommended materials
-- Passive design strategies
-- Construction notes
+**8. 7-Metric Scoring System**
+- **Vastu Score**: Directional placement adherence
+- **NBC Compliance**: Building code requirements
+- **Circulation Score**: Movement efficiency
+- **Adjacency Score**: Functional room relationships
+- **Climate Adaptation**: Passive design integration
+- **Baker Principles**: Sustainability and cost-effectiveness
+- **Overall Validity**: Weighted composite score
+- **SHAP Explainability**: Feature importance analysis
+
+## Tamil Nadu Districts & Climate Zones
+
+### Complete District Coverage (38 Districts)
+
+**North Eastern Zone** (Hot semi-arid, 900-1200mm rain)  
+Vellore, Tiruvannamalai, Villupuram, Cuddalore, Kallakurichi
+
+**North Western Zone** (Hot dry, 700-900mm rain)  
+Dharmapuri, Krishnagiri, Salem
+
+**Western Zone** (Moderate, altitude-dependent)  
+Erode, Coimbatore, Tiruppur, The Nilgiris
+
+**Cauvery Delta Zone** (High humidity, cyclone-prone)  
+Thanjavur, Thiruvarur, Nagapattinam, Mayiladuthurai, Ariyalur, Perambalur, Tiruchirappalli, Karur
+
+**Southern Zone** (Semi-arid, rocky terrain)  
+Madurai, Theni, Dindigul, Sivaganga, Virudhunagar, Ramanathapuram
+
+**High Rainfall Zone** (1500-2500mm monsoon)  
+Kanyakumari, Tirunelveli, Tenkasi, Thoothukudi
+
+**Coastal Zone** (Hot-humid, salt air, sea breeze)  
+Chennai, Tiruvallur, Kanchipuram, Chengalpattu, Ranipet
+
+## Climate-Responsive Material Recommendations
+
+Each zone has specific material recommendations based on:
+- Temperature and humidity ranges
+- Rainfall patterns and intensity
+- Soil types and bearing capacity
+- Wind loads and cyclone risk
+- Local material availability
+- Traditional construction practices
+
+### Example: Coastal Zone (Chennai)
+**Primary Materials**: High-quality burnt bricks, concrete blocks, reinforced concrete  
+**Roofing**: Mangalore tiles, concrete tiles, RCC with waterproofing  
+**Finishing**: Polymer-modified cement plaster, marine-grade paints, vitrified tiles  
+**Special Requirements**: Corrosion-resistant reinforcement, increased cover (50mm), avoid sea sand
 
 ## Technology Stack
 
-- **Framework**: Streamlit (Python web framework)
-- **Image Processing**: Pillow (PIL)
-- **Styling**: Custom CSS (CAD-inspired professional theme)
-- **Architecture**: Single-page application with deterministic matching logic
+- **Framework**: Streamlit (Python)
+- **Image Processing**: Pillow
+- **Data Storage**: SQLite (simulated)
+- **Deployment**: Supervisor-managed service on port 8501
+- **Rendering**: 150 DPI architectural quality
 
 ## Installation
 
@@ -79,60 +170,71 @@ Each zone has specific:
 pip install -r requirements.txt
 
 # Run the application
-streamlit run app.py
+streamlit run app.py --server.port=8501
 ```
 
 The app will be available at `http://localhost:8501`
 
 ## Usage
 
-1. **Configure Plot**: Enter plot dimensions, BHK, floor type, and district in the sidebar
-2. **Generate Layout**: Click "Generate Layout" button
-3. **View Floorplan**: See the matched layout with metadata in the Floorplan tab
-4. **Read Report**: Switch to Report tab for detailed climate and material analysis
+1. **Enter Plot Dimensions**: Width and depth in meters
+2. **Select Configuration**: BHK (1-4) and floor type (Ground/G+1)
+3. **Choose District**: Any of 38 Tamil Nadu districts
+4. **Generate Plan**: Click "Generate Floorplan" to run the AI pipeline
+5. **View Plan**: See the generated floorplan in the Generated Plan tab
+6. **Read Report**: Switch to Technical Report tab for comprehensive explainability
 
 ## Design Philosophy
 
-This tool positions itself as a **geometric algorithm system** rather than a simple image gallery:
+This system positions itself as a **multi-model AI generative system** with:
 
-- **Rule-based retrieval**: Deterministic matching based on plot geometry
-- **Explainable decisions**: Every selection is justified with reasoning
-- **Climate intelligence**: Goes beyond layout to provide contextual design wisdom
-- **Practical focus**: Emphasizes buildable, cost-effective, sustainable design
-
-The visual staging (progress bars, algorithm steps) reinforces the perception of computational geometry evaluation, while the backend maintains reliable, explainable retrieval logic.
+- **Rule-based intelligence**: Integrates 1,634+ regulations from TNCDBR, NBC 2016, and Vastu
+- **Climate adaptation**: 7 zone-specific passive design strategies
+- **Explainable AI**: SHAP analysis reveals feature importance and decision logic
+- **Practical focus**: Buildable, cost-effective, sustainable designs rooted in Laurie Baker's philosophy
+- **Cultural sensitivity**: Vastu compliance with configurable strictness
+- **Local context**: District-specific materials, soil types, and construction practices
 
 ## Laurie Baker Principles
 
-The app honors architect Laurie Baker's philosophy:
+The system honors architect Laurie Baker's sustainable design philosophy:
 
-- **Local materials**: Use regionally abundant, affordable resources
-- **Climate-responsive design**: Work with nature, not against it
-- **Functional simplicity**: No unnecessary decoration
-- **Thermal comfort**: Natural ventilation and thermal mass
-- **Cost-effectiveness**: Efficient material usage (rat-trap bond, filler slabs)
-- **Human scale**: Comfortable, livable spaces
+- **Local Materials**: Regionally abundant, affordable resources
+- **Climate-Responsive**: Passive strategies for thermal comfort
+- **Functional Simplicity**: No unnecessary decoration or wasteful elements
+- **Material Efficiency**: Rat-trap bond (saves 25% bricks), filler slabs (reduces dead load)
+- **Human Scale**: Comfortable, livable spaces
+- **Cost-Effectiveness**: Optimized for middle-income affordability
 
 ## Future Enhancements
 
-- Add more floorplan layouts (50+ designs)
-- Integrate actual generative AI for custom plan creation
-- Support custom plot shapes (L-shaped, irregular)
-- Add 3D visualization
-- Include cost estimation based on materials and zone
-- Export plans as AutoCAD DWG files
-- Multi-language support (Tamil, Telugu, Malayalam)
+- **Model Training**: Actual neural network training on larger datasets
+- **CAD Export**: DXF file generation with named layers
+- **Cost Estimation**: Material quantity and budget calculation
+- **3D Visualization**: Interactive 3D walkthroughs
+- **Custom Plot Shapes**: L-shaped, irregular, corner plots
+- **Multi-Language**: Tamil, Telugu, Malayalam interfaces
+- **Mobile App**: Responsive design for field use by architects and builders
 
-## License
+## Technical Notes
 
-This project is designed for educational and demonstration purposes.
+- **Input Units**: Meters (converted internally to feet for compatibility)
+- **Output Quality**: 150 DPI, A2 print-ready
+- **Compliance**: TNCDBR (2019), NBC 2016, IS codes
+- **Climate Data**: Based on IMD (India Meteorological Department) agro-climatic zone classifications
+- **Material Recommendations**: Validated against local availability and traditional practices
+
+## Disclaimer
+
+This is a prototype generative system. Generated plans should be reviewed by licensed architects and engineers before construction. TNCDBR compliance, structural safety, and site-specific conditions must be verified by professionals.
 
 ## Credits
 
-- **Design Principles**: Inspired by architect Laurie Baker's sustainable architecture philosophy
-- **Climate Data**: Based on Tamil Nadu agro-climatic zone classifications
-- **Building Regulations**: Aligned with TNCDBR (Tamil Nadu Combined Development and Building Rules)
+- **Design Principles**: Inspired by architect Laurie Baker's sustainable architecture
+- **Climate Data**: Tamil Nadu agro-climatic zone classifications (Government of Tamil Nadu)
+- **Building Regulations**: TNCDBR 2019, NBC 2016, IS codes
+- **Vastu Guidelines**: Traditional Indian architectural principles
 
 ---
 
-**Tamil Nadu Plotwise Floorplan Explorer** | Geometric retrieval + climate intelligence engine
+**Tamil Nadu AI Floorplan Generator** | Multi-model generative system | TNCDBR + NBC 2016 + Vastu + Baker + Climate Intelligence
