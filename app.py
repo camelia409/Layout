@@ -1156,10 +1156,11 @@ with tab2:
             flex:1; min-width:100px;
             background:#f8f9fb; border:1px solid #e8ecf0; border-radius:10px;
             padding:14px 16px; text-align:center;
+            display:flex; flex-direction:column; justify-content:center; align-items:center;
         }
-        .clim-val { font-size:1.35rem; font-weight:700; color:#1a2b3c; letter-spacing:-0.02em; }
+        .clim-val { font-size:1.35rem; font-weight:700; color:#1a2b3c; letter-spacing:-0.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%; }
         .clim-unit { font-size:0.72rem; color:#94a3b8; font-weight:500; margin-top:2px; }
-        .clim-label { font-size:0.78rem; color:#64748b; margin-top:6px; font-weight:500; }
+        .clim-label { font-size:0.78rem; color:#64748b; margin-top:6px; font-weight:500; white-space:nowrap; word-spacing:normal; }
 
         /* SHAP bar chart */
         .shap-wrap { margin:12px 0; }
@@ -1538,10 +1539,10 @@ with tab2:
             f'<h3>9. Soil Analysis &amp; Foundation Recommendations &mdash; {district}</h3>'
             f'<p style="font-size:0.88rem;color:#64748b;margin-bottom:14px;">Soil classification derived from BIS:1498 and TNCDBR district-level geotechnical survey data. Foundation recommendations per IS:1904 and NBC Part 5.</p>'
             f'<div class="clim-row">'
-            f'<div class="clim-card"><div class="clim-val" style="color:{zone_col};font-size:1rem;">{soil["type"]}</div><div class="clim-unit">&nbsp;</div><div class="clim-label">Soil Classification</div></div>'
+            f'<div class="clim-card"><div class="clim-val" style="color:{zone_col};font-size:1rem;">{soil["type"]}</div><div class="clim-unit" style="display:none;"></div><div class="clim-label">Soil Classification</div></div>'
             f'<div class="clim-card"><div class="clim-val">{soil["bearing"]}</div><div class="clim-unit">T/m&sup2;</div><div class="clim-label">Safe Bearing Capacity</div></div>'
             f'<div class="clim-card"><div class="clim-val">{soil["depth"]} m</div><div class="clim-unit">BGL</div><div class="clim-label">Min Foundation Depth</div></div>'
-            f'<div class="clim-card"><div class="clim-val" style="color:{risk_col};">{soil["risk"]}</div><div class="clim-unit">&nbsp;</div><div class="clim-label">Expansive Risk</div></div>'
+            f'<div class="clim-card"><div class="clim-val" style="color:{risk_col};">{soil["risk"]}</div><div class="clim-unit" style="display:none;"></div><div class="clim-label">Expansive Risk</div></div>'
             f'</div>'
             f'<ul style="padding-left:18px;margin-top:14px;">{soil_recs_html}</ul>'
             f'<p style="font-size:0.82rem;color:#94a3b8;margin-top:14px;border-top:1px solid #f1f5f9;padding-top:10px;">'
