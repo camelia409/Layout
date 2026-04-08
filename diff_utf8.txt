@@ -1,0 +1,177 @@
+﻿diff --git a/app.py b/app.py
+index 45fab4e..d3383ff 100644
+--- a/app.py
++++ b/app.py
+@@ -561,12 +561,168 @@ st.markdown("""
+     }
+     .stTabs [aria-selected="true"] p { color: #1a2b3c !important; }
+     
+-    /* Mobile */
++    /* ΓöÇΓöÇ Responsive: Tablet (Γëñ 900px) ΓöÇΓöÇ */
++    @media (max-width: 900px) {
++        .block-container { max-width: 100% !important; }
++        .brand-badges { gap: 6px; }
++        .brand-badge { font-size: 0.65rem; padding: 3px 8px; }
++    }
++
++    /* ΓöÇΓöÇ Responsive: Mobile (Γëñ 768px) ΓöÇΓöÇ */
+     @media (max-width: 768px) {
+-        .block-container { padding-top: 1rem !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+-        .hero-section { padding: 40px 20px; }
+-        .hero-title { font-size: 1.4rem; }
++        /* Layout */
++        .block-container {
++            padding-top: 0.75rem !important;
++            padding-left: 0.75rem !important;
++            padding-right: 0.75rem !important;
++            padding-bottom: 1.5rem !important;
++        }
++
++        /* Brand header stacks vertically, badges hidden */
++        .brand-header {
++            flex-direction: column;
++            align-items: flex-start;
++            gap: 10px;
++            padding-bottom: 14px;
++        }
+         .brand-badges { display: none; }
++        .brand-name { font-size: 1.05rem; }
++
++        /* Hero section */
++        .hero-section {
++            padding: 36px 16px;
++            margin: 16px 0;
++            border-radius: 12px;
++        }
++        .hero-title { font-size: 1.25rem; }
++        .hero-subtitle { font-size: 0.9rem; }
++        .hero-pills { gap: 6px; }
++        .hero-pill { font-size: 0.68rem; padding: 4px 10px; }
++
++        /* Tabs: horizontal scroll, smaller height */
++        .stTabs [data-baseweb="tab-list"] {
++            width: 100% !important;
++            overflow-x: auto !important;
++            flex-wrap: nowrap !important;
++            -webkit-overflow-scrolling: touch;
++            padding: 3px !important;
++        }
++        .stTabs [data-baseweb="tab"] {
++            height: 32px !important;
++            padding: 0 14px !important;
++            font-size: 0.8rem !important;
++            white-space: nowrap;
++            flex-shrink: 0;
++        }
++
++        /* Metric cards: 2-column grid */
++        [data-testid="column"] {
++            min-width: 47% !important;
++            flex: 1 1 47% !important;
++        }
++        div[data-testid="stMetric"] {
++            padding: 12px 14px;
++        }
++        div[data-testid="stMetricValue"] {
++            font-size: 1.1rem !important;
++        }
++        div[data-testid="stMetricLabel"] {
++            font-size: 0.74rem !important;
++        }
++
++        /* Report cards */
++        .report-card {
++            padding: 18px 16px;
++            border-radius: 10px;
++        }
++        .report-card h3 { font-size: 0.85rem; }
++        .report-card p, .report-card li { font-size: 0.875rem; }
++
++        /* Climate card row: 2 cards per row */
++        .clim-row {
++            gap: 8px !important;
++        }
++        .clim-card {
++            min-width: calc(50% - 4px) !important;
++            flex: 1 1 calc(50% - 4px) !important;
++            padding: 10px 8px !important;
++        }
++        .clim-val { font-size: 1.1rem !important; }
++        .clim-label { font-size: 0.72rem !important; white-space: normal !important; }
++
++        /* SHAP bar chart: shorter label column */
++        .shap-feat {
++            width: 110px !important;
++            font-size: 0.75rem !important;
++        }
++        .shap-score { font-size: 0.72rem !important; }
++
++        /* Tables: horizontal scroll */
++        .comp-table, .trace-table {
++            display: block;
++            overflow-x: auto;
++            -webkit-overflow-scrolling: touch;
++            font-size: 0.78rem !important;
++        }
++        .comp-table th, .comp-table td,
++        .trace-table th, .trace-table td {
++            padding: 7px 8px !important;
++            white-space: nowrap;
++        }
++
++        /* Material table: horizontal scroll */
++        .report-card table {
++            display: block;
++            overflow-x: auto;
++            -webkit-overflow-scrolling: touch;
++            font-size: 0.78rem !important;
++        }
++
++        /* Download buttons: stack full width */
++        [data-testid="stHorizontalBlock"] > [data-testid="column"] {
++            min-width: 100% !important;
++            flex: 1 1 100% !important;
++        }
++
++        /* Footer: stack */
++        div[style*="justify-content:space-between"] {
++            flex-direction: column !important;
++            gap: 6px;
++            text-align: center;
++        }
++
++        /* Headings */
++        h1 { font-size: 1.4rem !important; }
++        h2 { font-size: 1.15rem !important; }
++        h3 { font-size: 1rem !important; }
++
++        /* Sidebar section label */
++        .sidebar-section-label { font-size: 0.64rem; }
++
++        /* Spec card */
++        .spec-card-dim { font-size: 1.05rem !important; }
++    }
++
++    /* ΓöÇΓöÇ Responsive: Small Mobile (Γëñ 480px) ΓöÇΓöÇ */
++    @media (max-width: 480px) {
++        .block-container {
++            padding-left: 0.5rem !important;
++            padding-right: 0.5rem !important;
++        }
++        .hero-section { padding: 28px 12px; }
++        .hero-title { font-size: 1.1rem; }
++        .clim-card {
++            min-width: 100% !important;
++            flex: 1 1 100% !important;
++        }
++        .brand-logomark { width: 30px; height: 30px; }
++        .brand-name { font-size: 0.95rem; }
++        .stTabs [data-baseweb="tab"] {
++            padding: 0 10px !important;
++            font-size: 0.75rem !important;
++        }
++        .shap-feat { width: 90px !important; }
++        .report-card { padding: 14px 12px; }
+     }
+ </style>
+ """, unsafe_allow_html=True)
